@@ -1,0 +1,23 @@
+{
+  "name": "Periperi — Security scanning with contextual findings",
+  "short_name": "Periperi",
+  "description": "Understand what your code contains. See the evidence. Make better security decisions.",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "theme_color": "#F3F0E8",
+  "background_color": "#F3F0E8",
+  "display": "standalone",
+  "start_url": "/"
+}

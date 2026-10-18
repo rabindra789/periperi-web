@@ -1,0 +1,372 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-background: #F3F0E8;
+  --color-background-secondary: #FAF9F5;
+  --color-text-primary: #252724;
+  --color-text-secondary: #85877F;
+  --color-border: #DCD8CF;
+  --color-accent: #B66D53;
+  --color-severity-critical: #A8574F;
+  --color-severity-high: #C47F6B;
+  --color-severity-medium: #D49D8C;
+  --color-severity-low: #A5AE9B;
+  --color-severity-info: #7D8A8C;
+
+  /* ------------------------------------------------------------------
+     Self-hosted base families, provided by next/font on <html>:
+       --font-inter, --font-jetbrains, --font-grotesk
+     ------------------------------------------------------------------ */
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-jetbrains), 'SF Mono', 'Fira Code', monospace;
+
+  /* ------------------------------------------------------------------
+     Requested display typefaces: NANO, ACME, APEX, GEO, DESK, BITEC,
+     ARK, KAYON. None could be verified as a specific, legally
+     embeddable webfont (ambiguous / commercial / single-weight only),
+     so they are NOT embedded here. Until the licensed font files are
+     supplied, each role uses a documented open-source placeholder:
+       - display roles  -> Space Grotesk (self-hosted via next/font)
+       - text roles     -> Inter (self-hosted via next/font)
+     See /fonts for the live specimen and the website README for detail.
+     ------------------------------------------------------------------ */
+  --font-apex: var(--font-grotesk);
+  --font-acme: var(--font-grotesk);
+  --font-nano: var(--font-grotesk);
+  --font-geo: var(--font-inter);
+  --font-desk: var(--font-inter);
+  --font-bitec: var(--font-grotesk);
+  --font-ark: var(--font-grotesk);
+  --font-kayon: var(--font-grotesk);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+
+  --container-max: 1200px;
+  --container-padding: 1.5rem;
+  --header-height: 64px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-background: #F3F0E8;
+    --color-background-secondary: #FAF9F5;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Only apply smooth scroll after page load to avoid conflicting with scroll restoration */
+html.scroll-ready {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-grotesk);
+  color: var(--color-text-primary);
+  text-wrap: balance;
+}
+
+h1 {
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+h2 {
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+h3 {
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+code, kbd, samp, pre {
+  font-family: var(--font-mono);
+  font-feature-settings: "calt" 1, "zero" 1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-background);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.section {
+  padding: clamp(3.25rem, 6.5vw, 5.5rem) 0;
+}
+
+.section-sm {
+  padding: clamp(2.25rem, 4.5vw, 3.5rem) 0;
+}
+
+.balance {
+  text-wrap: balance;
+}
+
+.pretty {
+  text-wrap: pretty;
+}
+
+.rule {
+  height: 1px;
+  background: var(--color-border);
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.subheading {
+  font-family: var(--font-sans);
+  font-size: clamp(1.0625rem, 1.25vw, 1.2rem);
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  text-wrap: pretty;
+}
+
+@keyframes revealUp {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroSplashIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.88) translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.reveal {
+  animation: revealUp 800ms var(--ease-out-expo) both;
+}
+
+@keyframes edScan {
+  0% {
+    transform: translateX(-140%);
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(440%);
+    opacity: 0;
+  }
+}
+
+.ed-scan-bar {
+  animation: edScan 1600ms var(--ease-out-quart) infinite;
+  animation-delay: 200ms;
+}
+
+@keyframes edPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.ed-pulse {
+  animation: edPulse 1400ms ease-in-out infinite;
+}
+
+/* ------------------------------------------------------------------
+   Scroll story: --p is the section's 0..1 scroll progress, set from JS.
+   --i is a word's normalized position (0..1), set inline per word.
+   Defaults keep the copy fully visible when JS / motion is off.
+   ------------------------------------------------------------------ */
+.scroll-story {
+  --p: 1;
+}
+
+.scroll-story .sw {
+  opacity: clamp(0, calc((var(--p) - 0.06 - var(--i, 0) * 0.72) * 9), 1);
+}
+
+.scroll-story-heading {
+  opacity: clamp(0.3, calc(0.3 + var(--p) * 0.7), 1);
+  transform: translateY(calc((1 - var(--p)) * 4vh))
+    scale(clamp(0.72, calc(0.72 + var(--p) * 0.28), 1));
+  transform-origin: right center;
+  will-change: transform, opacity;
+}
+
+.scroll-story-rail-fill {
+  height: calc(var(--p) * 100%);
+}
+
+.scroll-story-rail-dot {
+  top: calc(var(--p) * 100%);
+}
+
+/* ------------------------------------------------------------------
+   Entrance reveal. Hidden state only applies once the client has set
+   html[data-motion="on"], so no-JS and reduced-motion renders always
+   show the finished state.
+   ------------------------------------------------------------------ */
+.reveal-item {
+  opacity: 1;
+}
+
+html[data-motion="on"] .reveal-item {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 700ms var(--ease-out-expo),
+    transform 700ms var(--ease-out-expo);
+  will-change: opacity, transform;
+}
+
+html[data-motion="on"] .reveal-item.is-in {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+
+/* ------------------------------------------------------------------
+   Scroll-progress primitives. `--p` (0..1) is written by
+   useScrollProgress; `--i` (0..1) is a child's stagger position.
+   Defaults render the finished state with no JS.
+   ------------------------------------------------------------------ */
+
+/* Sequential emphasis: each child brightens as --p passes its --i. */
+.ed-stagger > * {
+  opacity: clamp(0.45, calc((var(--p, 1) - var(--i, 0) * 0.5) * 3.2), 1);
+  transform: translateY(calc((1 - clamp(0, (var(--p, 1) - var(--i, 0) * 0.5) * 3.2, 1)) * 10px));
+}
+
+/* A heading that gains weight and clarity as its section comes into focus. */
+.ed-emphasis {
+  opacity: clamp(0.55, calc(0.55 + var(--p, 1) * 0.45), 1);
+  transform: scale(clamp(0.96, calc(0.96 + var(--p, 1) * 0.04), 1));
+  transform-origin: left center;
+  will-change: transform, opacity;
+}
+
+/* A rule / progress line that draws itself with scroll. */
+.ed-draw {
+  transform: scaleX(var(--p, 1));
+  transform-origin: left center;
+}
+
+.ed-draw-y {
+  transform: scaleY(var(--p, 1));
+  transform-origin: top center;
+}
+
+/* A small marker that lights up once --p passes its --i threshold. */
+.ed-lit {
+  opacity: clamp(0, calc((var(--p, 1) - var(--i, 0)) * 12), 1);
+}
+
+/* Mobile menu dropdown animation */
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Improve body touch scrolling on mobile */
+body {
+  overscroll-behavior-y: none;
+}
