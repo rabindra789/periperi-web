@@ -129,6 +129,16 @@ export default function Footer() {
             </Link>
           </div>
         </div>
+
+        <div className="mt-8 flex flex-col items-center gap-3">
+          <p className="text-[var(--color-text-secondary)] text-xs uppercase tracking-wider">Support this project</p>
+          <iframe
+            title="Buy me a coffee"
+            srcDoc={`<!DOCTYPE html><html><head><meta charset="utf-8" /></head><body style="margin:0;display:flex;justify-content:center;align-items:center;overflow:hidden;background:transparent;"><script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="rabindra789" data-color="#FFDD00" data-emoji="☕" data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff"></script></body></html>`}
+            className="h-[60px] w-[230px] border-0"
+            loading="lazy"
+          />
+        </div>
       </div>
     </footer>
   )
